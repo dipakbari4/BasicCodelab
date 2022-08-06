@@ -3,7 +3,9 @@ package com.dipak.basiccodelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -21,7 +23,7 @@ class MainActivity : ComponentActivity() {
             BasicCodelabTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+//                    modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
                     MyApp()
@@ -32,25 +34,30 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyApp() {
+fun MyApp(names: List<String> = listOf("World", "Compose")) {
     Surface(color = MaterialTheme.colors.background) {
-        Greeting(name = "Android")
+        Column(modifier = Modifier.padding(4.dp)) {
+            for (name in names) {
+                Greeting(name = name)
+            }
+        }
     }
 }
 
 @Composable
 fun Greeting(name: String) {
     Surface(
-        color = MaterialTheme.colors.primary
+        color = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 4.dp)
     ) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(24.dp)
-        )
+        Column (modifier = Modifier.fillMaxWidth().padding(24.dp)) {
+            Text(text = "Hello,")
+            Text(text = name)
+        }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
     BasicCodelabTheme {
