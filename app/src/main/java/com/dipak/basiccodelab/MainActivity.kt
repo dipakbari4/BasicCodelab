@@ -24,10 +24,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MyApp()
                 }
             }
         }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting(name = "Android")
     }
 }
 
@@ -47,6 +54,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     BasicCodelabTheme {
-        Greeting("Android")
+        MyApp()
     }
 }
